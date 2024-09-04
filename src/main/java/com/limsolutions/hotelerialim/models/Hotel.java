@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Hotel implements Serializable{
 
     @Id
-    @Column(name = "id_Hotel")
+    @Column(name = "id_hotel")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 
     private Long id_hotel;
@@ -47,12 +47,12 @@ public class Hotel implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "id_pais", nullable = false )
-    private String pais;
+    private Pais pais;
 
 
     @OneToMany
     @JoinColumn(name = "id_ciudad", nullable = false)
-    private String ciudad;
+    private Ciudad ciudad;
 
     
 
