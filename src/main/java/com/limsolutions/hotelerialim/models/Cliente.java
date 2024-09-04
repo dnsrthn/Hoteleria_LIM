@@ -16,16 +16,16 @@ import lombok.Data;
 public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long idCLiente;
+    private Long id_CLiente;
 
     @NotBlank
-    private String nombreCompleto;
+    private String nombre_Completo;
 
     @Email(message="ingresa un email valido")
     @NotBlank
     @Column(unique = true)
     private String correo; 
-    
+
     @NotBlank
     private String telefono;
 }
