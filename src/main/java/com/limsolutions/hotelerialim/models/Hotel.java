@@ -11,12 +11,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+@NoArgsConstructor
 @Entity
 @Data
 @Table(name = "hotel")
@@ -31,23 +32,23 @@ public class Hotel implements Serializable{
     private Long id_hotel;
 
 
-    @NotBlank
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
-    @NotBlank
+    @NotBlank(message = "La calificacion es obligatoria")
     private Long calificacion;
 
 
-    @NotBlank
+    @NotBlank(message = "Ingrese una direccion")
     private String direccion;
 
-    @NotBlank
+    @Email(message = "Debe ingresar un email valido")
     private String correo;
 
-    @NotBlank
+    @NotBlank(message = "Ingrese un telefono valido")
     private Long telefono;
 
-    @NotBlank
+    @NotBlank(message = "Los ingresos son obligatorias")
     private double ingresos;
 
 
