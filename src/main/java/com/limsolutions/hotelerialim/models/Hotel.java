@@ -12,15 +12,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 
-@NoArgsConstructor
 @Entity
+@Data
 @Table(name = "hotel")
 
 public class Hotel implements Serializable{
+
 
     @Id
     @Column(name = "id_hotel")
@@ -29,17 +31,25 @@ public class Hotel implements Serializable{
     private Long id_hotel;
 
 
+    @NotBlank
     private String nombre;
 
+    @NotBlank
     private Long calificacion;
 
+
+    @NotBlank
     private String direccion;
 
+    @NotBlank
     private String correo;
 
+    @NotBlank
     private Long telefono;
 
+    @NotBlank
     private double ingresos;
+
 
     @NotBlank(message = "Ingrese una fotografia del hotel")
     private String hotelPhoto;
@@ -54,7 +64,9 @@ public class Hotel implements Serializable{
     @JoinColumn(name = "id_ciudad", nullable = false)
     private Ciudad ciudad;
 
+
+
     
-
-
 }
+
+    
