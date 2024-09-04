@@ -58,6 +58,9 @@ public class Hotel implements Serializable{
     @NotBlank(message = "Ingrese una fotografia del hotel")
     private String hotelPhoto;
 
+    @NotBlank(message = "Ingrese el estado del hotel")
+    private String estado;
+
 
     @OneToOne
     @JoinColumn(name = "id_pais", nullable = false )
