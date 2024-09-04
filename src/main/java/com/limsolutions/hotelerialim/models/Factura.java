@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -18,12 +19,15 @@ public class Factura implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id_Factura;
     
+    @OneToOne
     @JoinColumn(nullable = false)
     private Cliente id_Cliente;
 
+    @OneToOne
     @JoinColumn(nullable = false)
     private Hotel id_Hotel;
 
+    @OneToOne
     @JoinColumn(nullable = false)
     private Reservacion id_Reservacion;
 
