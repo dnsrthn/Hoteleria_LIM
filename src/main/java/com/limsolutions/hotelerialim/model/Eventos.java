@@ -8,12 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
 @Entity
 @Table(name = "eventos")
-public class Eventos {
+public class Eventos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
