@@ -33,6 +33,7 @@ public class Hotel implements Serializable{
 
 
     @NotBlank(message = "El nombre es obligatorio")
+    @Column(unique = true)
     private String nombre;
 
     @NotBlank(message = "La calificacion es obligatoria")
@@ -40,9 +41,11 @@ public class Hotel implements Serializable{
 
 
     @NotBlank(message = "Ingrese una direccion")
+    @Column(unique = true)
     private String direccion;
 
     @Email(message = "Debe ingresar un email valido")
+    @Column(unique = true)
     private String correo;
 
     @NotBlank(message = "Ingrese un telefono valido")
