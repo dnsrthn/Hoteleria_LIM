@@ -11,8 +11,13 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 
 @Entity
+@Data
 @Table(name = "eventos")
 public class Eventos implements Serializable {
 
@@ -59,94 +64,4 @@ public class Eventos implements Serializable {
     private String organizador;
 
 
-    public Eventos() {
-    }
-
-    public Long getId_Eventos() {
-        return id_Eventos;
-    }
-
-    public void set_IdEventos(Long id_Eventos) {
-        this.id_Eventos = id_Eventos;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public Salon getSalon() {
-        return salon;
-    }
-
-    public void setSalon(Salon salon) {
-        this.salon = salon;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
-
-    public String getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getOrganizador() {
-        return organizador;
-    }
-
-    public void setOrganizador(String organizador) {
-        this.organizador = organizador;
-    }
 }

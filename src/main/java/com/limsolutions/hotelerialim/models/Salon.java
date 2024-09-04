@@ -11,8 +11,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Entity
+@Data
 @Table(name = "salon")
 public class Salon implements Serializable {
 
@@ -40,54 +44,4 @@ public class Salon implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    public Salon() {
-    }
-
-    public Long getIdSalon() {
-        return idSalon;
-    }
-
-    public void setIdSalon(Long idSalon) {
-        this.idSalon = idSalon;
-    }
-
-    public Long getIdHotel() {
-        return idHotel;
-    }
-
-    public void setIdHotel(Long idHotel) {
-        this.idHotel = idHotel;
-    }
-
-    public Long getIdServicio() {
-        return idServicio;
-    }
-
-    public void setIdServicio(Long idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }
