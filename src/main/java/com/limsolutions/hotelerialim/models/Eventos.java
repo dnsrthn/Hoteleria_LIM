@@ -5,16 +5,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
+
 import java.io.Serializable;
+
 import java.sql.Date;
 import java.sql.Time;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+// @NoArgsConstructor
 
 @Entity
 @Data
@@ -26,13 +29,13 @@ public class Eventos implements Serializable {
     @Column(name = "id_eventos")
     private Long id_Eventos;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel hotel;
+    private Hotel id_hotel;
 
-    @OneToMany
+    @ManyToOne 
     @JoinColumn(name = "id_salon", nullable = false)
-    private Salon salon;
+    private Salon id_salon;
 
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Column(name = "nombre")
@@ -46,10 +49,10 @@ public class Eventos implements Serializable {
     private int cantidad;
 
     @Column(name = "fecha", nullable = false)
-    private LocalDate fecha;
+    private Date fecha;
 
     @Column(name = "hora", nullable = false)
-    private LocalTime hora;
+    private Time hora;
 
     @NotBlank(message = "El contacto no puede estar en blanco")
     @Column(name = "contacto")
