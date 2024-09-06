@@ -17,25 +17,27 @@ public class Factura implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id_Factura;
+    private Long id_factura;
     
     @OneToOne
     @JoinColumn(nullable = false)
-    private Cliente id_Cliente;
+    private Cliente id_cliente;
 
     @OneToOne
     @JoinColumn(nullable = false)
-    private Hotel id_Hotel;
+    private Hotel id_hotel;
 
     @OneToOne
     @JoinColumn(nullable = false)
-    private Reservacion id_Reservacion;
+    private Reservacion id_reservacion;
 
-    @NotBlank
+    @NotBlank(message = "Necesita llenar el campo de Impuestos")
     private Double impuestos;
-    @NotBlank
+
+    @NotBlank(message = "Necesita llenar el campo de tarifa")
     private Double tarifa;
-    @NotBlank
+
+    @NotBlank(message = "Necesita llenar el campo de total")
     private Double total;
 
 
