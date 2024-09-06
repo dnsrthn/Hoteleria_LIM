@@ -17,9 +17,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "pais")
 public class pais implements Serializable{
     @Id
-    @Column(name = "id")
+    @Column(name = "id_pais")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Long id_pais;
+
     private String nombre;
 
         
