@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -36,7 +35,6 @@ public class Hotel implements Serializable{
     @Column(unique = true)
     private String nombre;
 
-    @NotBlank(message = "La calificacion es obligatoria")
     private Long calificacion;
 
 
@@ -48,10 +46,8 @@ public class Hotel implements Serializable{
     @Column(unique = true)
     private String correo;
 
-    @NotBlank(message = "Ingrese un telefono valido")
     private Long telefono;
 
-    @NotBlank(message = "Los ingresos son obligatorias")
     private double ingresos;
 
 
@@ -67,13 +63,10 @@ public class Hotel implements Serializable{
     private Pais pais;
 
 
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "id_ciudad", nullable = false)
     private Ciudad ciudad;
 
-
-
-    
 }
 
     
