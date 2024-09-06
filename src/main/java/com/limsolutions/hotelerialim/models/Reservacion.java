@@ -25,15 +25,15 @@ public class Reservacion implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel hotel;
+    private Hotel id_hotel;
 
     @OneToOne
     @JoinColumn(name = "id_habitacion", nullable = false)
-    private Habitacion habitacion;
+    private Habitacion id_habitacion;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private Cliente cliente; 
+    private Cliente id_cliente; 
 
     @Column(unique = false)
     private int dias;
