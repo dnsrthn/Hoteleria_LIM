@@ -23,7 +23,7 @@ public class Servicio implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel hotel;
+    private Hotel id_hotel;
 
     private String nombre;
 
