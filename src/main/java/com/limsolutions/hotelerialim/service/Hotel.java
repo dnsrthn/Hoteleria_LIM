@@ -31,7 +31,7 @@ public class HotelService implements IHotel {
     @Override
     public Hotel obtenerHotelId(int idHotel) {
         return hoteles.stream()
-                .filter(h -> h.getId() == idHotel)
+                .filter(h -> h.getId() == id_hotel)
                 .findFirst() //no es necesario importar las dependencias de stream para usar FindFirst
                 .orElse(null);
     }
