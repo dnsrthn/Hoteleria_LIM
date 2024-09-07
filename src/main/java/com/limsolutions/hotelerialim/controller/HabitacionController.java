@@ -26,5 +26,9 @@ public class HabitacionController {
     }
 
     @PostMapping("/agregar")
+    public Habitacion agregarHabitacion (@RequestBody Habitacion habitacion){
+        logger.info("Habitacion agregada" + habitacion);
+        return IHabitacionService.guardarHabitacion(habitacion);
+    }
     
 }

@@ -18,5 +18,14 @@ public class HabitacionService implements IHabitacionService {
         return habitacionesRepository.findAll();
     }    
 
-    
+    @Override
+    public Habitacion buscarHabitacion(Long id_habitacion){
+        Habitacion habitacion = habitacionesRepository.findById(id_habitacion).orElse(null);
+        return habitacion;
+    }
+
+    @Override
+    public Habitacion guardarHabitacion(Habitacion habitacion){
+        return habitacionesRepository.save(habitacion);
+    }
 }

@@ -7,7 +7,8 @@ public interface IHabitacionService {
 
     public List<Habitacion> listarHabitaciones();
 
+    public Habitacion buscarHabitacion(Long id_habitacion);
 
-
+    public Habitacion guardarHabitacion(Habitacion habitacion);
 
 }
