@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("HoteleriaLIMSolutions/v1/habitaciones")
@@ -52,13 +54,16 @@ public class HabitacionController {
         IHabitacionService.guardarHabitacion(habitacion);
         return ResponseEntity.ok(habitacion);
     }
-    
 
+    @DeleteMapping("/habitaciones/{id_habitacion}")
+    public ResponseEntity<Map<String, Boolean> eliminarHabitacion(@PathVariable Long id_habitacion){
+        Habitacion habitacion = IHabitacionService.buscarHabitacion(id_habitacion);
 
+        IHabitacionService.eliminarHabitacion(habitacion);
 
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("Eliminado", true);
+        return ResponseEntity.ok(respuesta);
 
+    }
 }
-
-
-
-
