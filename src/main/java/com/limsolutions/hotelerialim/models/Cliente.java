@@ -18,7 +18,7 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id_cliente;
 
-    @NotBlank
+    @NotBlank(message = "ingresa el nombre completo es obligatorio")
     private String nombreCompleto;
 
     @Email(message="ingresa un email valido")
@@ -26,6 +26,6 @@ public class Cliente implements Serializable {
     @Column(unique = true)
     private String correo; 
 
-    @NotBlank(message = "Necesita llenar el campo de numero telefonico")
+    @NotBlank(message = "Necesita llenar el campo del numero telefonico")
     private String telefono;
 }

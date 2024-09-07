@@ -2,7 +2,6 @@ package com.limsolutions.hotelerialim.models;
 
 import java.io.Serializable;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -36,7 +36,9 @@ public class Reservacion implements Serializable{
     private Cliente id_cliente; 
 
     @Column(unique = false)
-    private int dias;
-
+    @NotBlank(message ="envio de dias obligatorio")
+    private Long dias;
+    
+    @NotBlank(message ="envio de estado obligatorio")
     private String estado;
 }
