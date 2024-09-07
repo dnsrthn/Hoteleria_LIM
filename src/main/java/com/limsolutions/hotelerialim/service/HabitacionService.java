@@ -28,4 +28,9 @@ public class HabitacionService implements IHabitacionService {
     public Habitacion guardarHabitacion(Habitacion habitacion){
         return habitacionesRepository.save(habitacion);
     }
+
+    @Override 
+    public void eliminarHabitacion(Habitacion habitacion){
+        habitacionesRepository.delete(habitacion);
+    }
 }

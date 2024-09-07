@@ -39,7 +39,19 @@ public class HabitacionController {
         return ResponseEntity.ok(habitacion);
     }
 
-    
+    @PutMapping("/habitaciones/{id_habitacion}")
+    public ResponseEntity <Habitacion> editarHabitacion(@PathVariable Long id_habitacion, @RequestBody Habitacion habitacionRecibido){
+        Habitacion habitacion = IHabitacionService.buscarHabitacion(id_habitacion);
+        
+        habitacion.setTipo(habitacionRecibido.getTipo());
+        habitacion.setPrecio(habitacionRecibido.getPrecio());
+        habitacion.setNumero(habitacionRecibido.getNumero());
+        habitacion.setId_servicio(habitacionRecibido.getId_servicio());
+        habitacion.setId_hotel(habitacionRecibido.getId_hotel());
+        habitacion.setEstado(habitacionRecibido.getEstado());
+        IHabitacionService.guardarHabitacion(habitacion);
+        return ResponseEntity.ok(habitacion);
+    }
     
 
 

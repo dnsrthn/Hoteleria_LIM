@@ -11,4 +11,6 @@ public interface IHabitacionService {
 
     public Habitacion guardarHabitacion(Habitacion habitacion);
 
+    public void eliminarHabitacion(Habitacion habitacion);
+
 }
