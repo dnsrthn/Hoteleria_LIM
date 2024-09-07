@@ -6,6 +6,7 @@ import com.limsolutions.hotelerialim.service.IHabitacionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +27,26 @@ public class HabitacionController {
     }
 
     @PostMapping("/agregar")
-    public Habitacion agregarHabitacion (@RequestBody Habitacion habitacion){
+    public Habitacion agregarHabitacion(@RequestBody Habitacion habitacion) {
         logger.info("Habitacion agregada" + habitacion);
         return IHabitacionService.guardarHabitacion(habitacion);
     }
+
+    @GetMapping("/habitaciones/{id_habitacion}")
+    public ResponseEntity <Habitacion> buscarHabitacion(@PathVariable Long id_habitacion){
+        Habitacion habitacion = IHabitacionService.buscarHabitacion(id_habitacion);
+
+        return ResponseEntity.ok(habitacion);
+    }
+
     
+    
+
+
+
+
 }
+
+
+
+
