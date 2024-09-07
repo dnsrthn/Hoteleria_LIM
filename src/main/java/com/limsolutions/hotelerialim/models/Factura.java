@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity 
@@ -20,24 +19,21 @@ public class Factura implements Serializable {
     private Long id_factura;
     
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente id_cliente;
 
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_hotel", nullable = false)
     private Hotel id_hotel;
 
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_reservacion", nullable = false)
     private Reservacion id_reservacion;
 
-    @NotBlank(message = "Necesita llenar el campo de Impuestos")
     private Double impuestos;
 
-    @NotBlank(message = "Necesita llenar el campo de tarifa")
     private Double tarifa;
 
-    @NotBlank(message = "Necesita llenar el campo de total")
     private Double total;
 
 

@@ -22,6 +22,7 @@ public class Habitacion implements Serializable {
     @Column(name = "id_habitacion")
     private Long id_habitacion;
 
+    @ManyToOne
     @JoinColumn(name = "id_hotel", nullable = false)
     private Hotel id_hotel;
 
@@ -32,10 +33,10 @@ public class Habitacion implements Serializable {
     private String numero;
 
     @Column(name = "estado")
-    private String estado;
+    private Boolean estado;
 
     @Column(name = "precio")
-    private double precio;
+    private Double precio;
 
     @ManyToOne
     @JoinColumn(name = "id_servicio",  nullable = false)

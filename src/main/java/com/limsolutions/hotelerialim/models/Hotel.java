@@ -27,7 +27,6 @@ public class Hotel implements Serializable{
     @Id
     @Column(name = "id_hotel")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private Long id_hotel;
 
 
@@ -60,12 +59,12 @@ public class Hotel implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "id_pais", nullable = false )
-    private Pais pais;
+    private Pais id_pais;
 
 
     @OneToOne
     @JoinColumn(name = "id_ciudad", nullable = false)
-    private Ciudad ciudad;
+    private Ciudad id_ciudad;
 
 }
 

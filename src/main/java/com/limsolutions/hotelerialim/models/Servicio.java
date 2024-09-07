@@ -17,7 +17,7 @@ import lombok.Data;
 @Table(name = "servicio")
 public class Servicio implements Serializable{
     @Id
-    @Column(name = "id_servcio", nullable = false)
+    @Column(name = "id_servicio", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_servicio;
 
