@@ -40,4 +40,9 @@ public class SalonService implements ISalonService{
             return null; 
        }
     }
+
+    public Salon guardarSalones(Salon salon) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'guardarSalones'");
+    }
 }
