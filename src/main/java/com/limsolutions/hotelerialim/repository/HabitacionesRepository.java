@@ -5,7 +5,7 @@ import com.limsolutions.hotelerialim.models.Habitacion;
 import java.util.List;
 
 public interface HabitacionesRepository extends JpaRepository<Habitacion, Long> {
-    
-    // Método para obtener todas las habitaciones, sin filtros
-    List<Habitacion> findAll();
+
+    // Buscar habitaciones por estado ("DISPONIBLE" o "NO DISPONIBLE")
+    List<Habitacion> findByEstado(String estado);
 }

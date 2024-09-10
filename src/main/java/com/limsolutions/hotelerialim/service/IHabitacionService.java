@@ -5,12 +5,8 @@ import java.util.List;
 
 public interface IHabitacionService {
 
-    public List<Habitacion> listarHabitaciones();
+    // Definir un método de búsqueda con filtros
+    List<Habitacion> buscarPorEstado(String estado);
 
-    public Habitacion buscarHabitacion(Long id_habitacion);
-
-    public Habitacion guardarHabitacion(Habitacion habitacion);
-
-    public void eliminarHabitacion(Habitacion habitacion);
 
 }

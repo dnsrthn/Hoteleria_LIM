@@ -13,24 +13,10 @@ public class HabitacionService implements IHabitacionService {
     private HabitacionesRepository habitacionesRepository;
 
     @Override
-    public List<Habitacion> listarHabitaciones(){
-
-        return habitacionesRepository.findAll();
-    }    
-
-    @Override
-    public Habitacion buscarHabitacion(Long id_habitacion){
-        Habitacion habitacion = habitacionesRepository.findById(id_habitacion).orElse(null);
-        return habitacion;
+     // Buscar todas las habitaciones por estado
+    public List<Habitacion> buscarPorEstado(String estado) {
+        return habitacionesRepository.findByEstado(estado);
     }
+    
 
-    @Override
-    public Habitacion guardarHabitacion(Habitacion habitacion){
-        return habitacionesRepository.save(habitacion);
-    }
-
-    @Override 
-    public void eliminarHabitacion(Habitacion habitacion){
-        habitacionesRepository.delete(habitacion);
-    }
 }

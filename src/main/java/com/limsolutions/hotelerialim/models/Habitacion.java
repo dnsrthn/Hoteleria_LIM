@@ -33,7 +33,7 @@ public class Habitacion implements Serializable {
     private String numero;
 
     @Column(name = "estado")
-    private Boolean estado;
+    private String estado;
 
     @Column(name = "precio")
     private Double precio;

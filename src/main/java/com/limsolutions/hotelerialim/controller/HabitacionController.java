@@ -1,17 +1,14 @@
 package com.limsolutions.hotelerialim.controller;
 
 import com.limsolutions.hotelerialim.models.Habitacion;
-import com.limsolutions.hotelerialim.service.IHabitacionService;
+import com.limsolutions.hotelerialim.service.HabitacionService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("HoteleriaLIMSolutions/v1/habitaciones")
@@ -19,8 +16,19 @@ public class HabitacionController {
     private static final Logger logger = LoggerFactory.getLogger(HabitacionController.class);
 
     @Autowired
-    private IHabitacionService IHabitacionService;
+    private HabitacionService habitacionService;
 
+    // 1. Buscar habitaciones por estado ("DISPONIBLE" o "NO DISPONIBLE")
+    @GetMapping("/listarestado")
+    public List<Habitacion> listarHabitacionesPorEstado(@RequestParam String estado) { // Devuelve una lista de objetos Habitacion, (El metodo espera un parametro llamado estado se usara para filtrar las habitaiones por estado)
+        logger.info("Listando habitaciones con estado: {}", estado);// Registra un mensaje informativo indica que se esta listando con el estado.
+        List<Habitacion> habitaciones = habitacionService.buscarPorEstado(estado);// Llama al service para buscar habitaciones que coincidan con el estado proporcionado
+        logger.info("Se encontraron {} habitaciones con estado: {}", habitaciones.size(), estado);// egistra otro mensaje informativo indicando cuántas habitaciones fueron encontradas con el estado especificado.
+        return habitaciones;// Devuelve la lista de habitaciones encontradas al cliente
+    }
+
+
+    /* 
     @GetMapping("/listar")
     public List<Habitacion> obtenerHabitacion() {
         var habitacion2 = IHabitacionService.listarHabitaciones();
@@ -70,5 +78,6 @@ public class HabitacionController {
         // Habitación eliminada con éxito
         return ResponseEntity.ok(Map.of("Eliminado", true));
     }
+        */
 
 }
