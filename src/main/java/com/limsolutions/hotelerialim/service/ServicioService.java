@@ -36,6 +36,12 @@ public class ServicioService implements IServicioService {
         servicioRepository.delete(servicio);
     }
 
+    @Override
+    public List<Servicio> listarServiciosPorHotel(Long id_hotel) {
+        return servicioRepository.findById_Hotel(id_hotel);
+
+    }
+
 
 
 

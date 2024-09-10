@@ -16,4 +16,6 @@ public interface IServicioService {
 
     public void eliminarServicio (Servicio servicio);
 
+    public List<Servicio> listarServiciosPorHotel(Long id_hotel);
+
 }

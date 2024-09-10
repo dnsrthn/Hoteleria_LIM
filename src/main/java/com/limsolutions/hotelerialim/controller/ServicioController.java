@@ -58,9 +58,20 @@ public class ServicioController {
 
         }
         return ResponseEntity.ok(servicio);
-
-    
     }
+
+
+    @GetMapping("/listar/hotel/{id_hotel}")
+    public List<Servicio> listarServiciosPorHotel(@PathVariable Long id_hotel) {
+    List<Servicio> servicios = servicioService.listarServiciosPorHotel(id_hotel);
+         if (servicios.isEmpty()) {
+        logger.error("No se encontraron servicios en el hotel con ID " + id_hotel);
+        } else {
+        servicios.forEach(servicio -> logger.info(servicio.toString()));
+        }
+        return servicios;
+    }
+
 
     @PutMapping("/editar/{id_servicio}")
     
