@@ -12,22 +12,22 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
+@AllArgsConstructor 
 @Entity
 @Data
-@Table(name = "hotel")
-
+@Table(name = "Hotel")
 public class Hotel implements Serializable{
 
 
     @Id
     @Column(name = "id_hotel")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-
     private Long id_hotel;
 
 
@@ -35,8 +35,8 @@ public class Hotel implements Serializable{
     @Column(unique = true)
     private String nombre;
 
+    @NotBlank(message = "La calificacion es obligatoria")
     private Long calificacion;
-
 
     @NotBlank(message = "Ingrese una direccion")
     @Column(unique = true)
@@ -46,8 +46,10 @@ public class Hotel implements Serializable{
     @Column(unique = true)
     private String correo;
 
-    private Long telefono;
+    @NotBlank(message = "Ingrese el numero telefonico")
+    private String telefono;
 
+    @NotBlank(message = "Ingrese los ingresos generados")
     private double ingresos;
 
 
@@ -60,12 +62,16 @@ public class Hotel implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "id_pais", nullable = false )
-    private Pais pais;
+    private Pais id_pais;
 
 
     @OneToOne
     @JoinColumn(name = "id_ciudad", nullable = false)
-    private Ciudad ciudad;
+    private Ciudad id_ciudad;
+
+    public Hotel(String estado){
+        this.estado = estado;
+    }
 
 }
 
