@@ -1,5 +1,9 @@
 package com.limsolutions.hotelerialim.models;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,25 +13,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-
-import java.io.Serializable;
-
-import java.sql.Date;
-import java.sql.Time;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-// @NoArgsConstructor
 
 @Entity
 @Data
-@Table(name = "eventos")
+@Table(name = "Eventos")
 public class Eventos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_eventos")
-    private Long id_Eventos;
+    private Long id_eventos;
 
     @ManyToOne
     @JoinColumn(name = "id_hotel", nullable = false)
@@ -41,12 +37,12 @@ public class Eventos implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @NotBlank(message = "El tipo no puede estar en blanco")
+    @NotBlank(message = "El tipo de evento no puede estar en blanco")
     @Column(name = "tipo")
     private String tipo;
 
     @Column(name = "cantidad", nullable = false)
-    private int cantidad;
+    private Long cantidad;
 
     @Column(name = "fecha", nullable = false)
     private Date fecha;

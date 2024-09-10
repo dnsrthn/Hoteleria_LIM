@@ -8,19 +8,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Entity
 @Data
-@Table(name = "pais")
-public class pais implements Serializable{
+@Table(name = "Pais")
+public class Pais implements Serializable{
     @Id
     @Column(name = "id_pais")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_pais;
 
+    @NotBlank(message = "Necesita llenar el campo de nombre")
     private String nombre;
 
         
