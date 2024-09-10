@@ -12,7 +12,7 @@ public interface ISalonService {
 
     public Salon buscarSalones(Long idSalon);
 
-    public Salon guardarSalones(Salon salon);
+    public Salon editarSalones(Salon salon);
 
     
 }

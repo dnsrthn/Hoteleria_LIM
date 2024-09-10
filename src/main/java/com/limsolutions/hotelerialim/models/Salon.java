@@ -45,4 +45,9 @@ public class Salon implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    public Long getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+    }
+
 }
