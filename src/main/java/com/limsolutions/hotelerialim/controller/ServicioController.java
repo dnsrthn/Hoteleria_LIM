@@ -61,7 +61,7 @@ public class ServicioController {
     }
 
 
-    @GetMapping("/listar/hotel/{id_hotel}")
+    /*@GetMapping("/listar/hotel/{id_hotel}")
     public List<Servicio> listarServiciosPorHotel(@PathVariable Long id_hotel) {
     List<Servicio> servicios = servicioService.listarServiciosPorHotel(id_hotel);
          if (servicios.isEmpty()) {
@@ -71,7 +71,7 @@ public class ServicioController {
         }
         return servicios;
     }
-
+*/
 
     @PutMapping("/editar/{id_servicio}")
     

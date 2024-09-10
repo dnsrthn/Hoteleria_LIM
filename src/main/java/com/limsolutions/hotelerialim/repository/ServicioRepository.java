@@ -9,6 +9,6 @@ import com.limsolutions.hotelerialim.models.Servicio;
 
 public interface ServicioRepository extends JpaRepository<Servicio, Long>{
 
-    List<Servicio> findById_Hotel(Long id_hotel);
+    //List<Servicio> findById_Hotel(Long id_hotel);
 
 }
