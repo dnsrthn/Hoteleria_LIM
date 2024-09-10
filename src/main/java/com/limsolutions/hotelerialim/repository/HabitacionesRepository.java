@@ -7,5 +7,5 @@ import java.util.List;
 public interface HabitacionesRepository extends JpaRepository<Habitacion, Long> {
 
     // Buscar habitaciones por estado ("DISPONIBLE" o "NO DISPONIBLE")
-    List<Habitacion> findByEstado(String estado);
+    List<Habitacion> findAll();
 }
