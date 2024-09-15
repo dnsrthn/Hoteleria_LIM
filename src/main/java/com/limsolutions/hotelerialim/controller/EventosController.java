@@ -1,9 +1,5 @@
 package com.limsolutions.hotelerialim.controller;
 
-
-
-
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,7 +22,7 @@ import com.limsolutions.hotelerialim.service.EventosService;
 // import com.limsolutions.hotelerialim.models.Salon;
 
 @RestController
-@RequestMapping ("hr-Evento")
+@RequestMapping ("HoteleriaLIMSolutions/v1/Eventos")
 
 public class EventosController  {
 
@@ -68,6 +65,8 @@ public class EventosController  {
                 logger.error("No se pudo encontrar el evento indicado");
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }else{
+                EventoEditar.setId_hotel(evento.getId_hotel());
+                EventoEditar.setId_salon(evento.getId_salon());
                 EventoEditar.setNombre(evento.getNombre());
                 EventoEditar.setTipo(evento.getTipo());
                 EventoEditar.setCantidad(evento.getCantidad());
@@ -76,8 +75,22 @@ public class EventosController  {
                 EventoEditar.setContacto(evento.getContacto());
                 EventoEditar.setEstado(evento.getEstado());
                 EventoEditar.setOrganizador(evento.getOrganizador());
+                eventosService.guardarEvento(EventoEditar);
                 logger.info("Guardando registros modificados del evento");
             }
                 return ResponseEntity.ok(EventoEditar);
         }
+
+        @PatchMapping("cambiar-estado/{id}")
+    public ResponseEntity<Eventos> actualizarEstado(@PathVariable Long id,@RequestBody Eventos evento) {
+        Eventos  EventoEditar = eventosService.buscarEvento(id);
+        if(EventoEditar == null){
+            logger.error("No se pudo encontrar el evento indicado");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        EventoEditar.setEstado(evento.getEstado());
+        eventosService.guardarEvento(EventoEditar);
+        return ResponseEntity.ok(EventoEditar);
+    }
+
 }
