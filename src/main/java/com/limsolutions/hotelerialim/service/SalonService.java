@@ -30,19 +30,4 @@ public class SalonService implements ISalonService{
         Optional<Salon> salon = salonRepository.findById(idSalon);
         return salon.orElse(null);
     }
-
-    
-    @Override
-    public Salon editarSalones(Salon salon) {
-        if (salonRepository.existsById(salon.getId())) {
-            return salonRepository.save(salon);
-        } else {
-            return null; 
-       }
-    }
-
-    public Salon guardarSalones(Salon salon) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'guardarSalones'");
-    }
 }

@@ -11,8 +11,4 @@ public interface ISalonService {
     public Salon agregarSalones(Salon salon);
 
     public Salon buscarSalones(Long idSalon);
-
-    public Salon editarSalones(Salon salon);
-
-    
 }
