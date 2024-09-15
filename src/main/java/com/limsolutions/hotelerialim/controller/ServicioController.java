@@ -8,17 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.limsolutions.hotelerialim.models.Servicio;
 import com.limsolutions.hotelerialim.service.ServicioService;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
 
 
 
@@ -48,14 +47,13 @@ public class ServicioController {
         return servicioService.guardarServicio(servicio);
     }
 
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/buscar/{id_servicio}")
 
     public ResponseEntity <Servicio> buscarServicio(@PathVariable Long id_servicio){
         Servicio servicio = servicioService.buscarServicio(id_servicio);
         if(servicio == null){
             logger.error("No se encontro el servicio indicado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
         return ResponseEntity.ok(servicio);
     }
@@ -81,6 +79,7 @@ public class ServicioController {
             logger.error("No se encontro el servicio solicitado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
+            editarServicio.setId_hotel(servicioRecibido.getId_hotel());
             editarServicio.setNombre(servicioRecibido.getNombre());
             servicioService.guardarServicio(editarServicio);
             logger.info("Se ha editado correctamente");
