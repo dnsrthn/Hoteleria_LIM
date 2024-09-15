@@ -44,7 +44,6 @@ public class HabitacionController {
     @GetMapping("/habitaciones/{id_habitacion}")
     public ResponseEntity<Habitacion> buscarHabitacion(@PathVariable Long id_habitacion) {
         Habitacion habitacion = habitacionService.buscarHabitacion(id_habitacion);
-
         return ResponseEntity.ok(habitacion);
     }
 
