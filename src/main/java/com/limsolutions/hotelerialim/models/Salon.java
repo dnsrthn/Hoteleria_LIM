@@ -39,8 +39,12 @@ public class Salon implements Serializable {
     private String nombre;
 
     @NotBlank(message = "La capacidad no puede ser nula")
-    @Column(name = "capacidad", nullable = false)
+    @Column(name = "capacidad")
     private Long capacidad;
+
+    @NotBlank()
+    @Column(name = "estado")
+    private Boolean estado;
 
     @Column(name = "descripcion")
     private String descripcion;

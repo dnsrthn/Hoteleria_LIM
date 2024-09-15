@@ -15,6 +15,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+// @NoArgsConstructor
+
 @Entity
 @Data
 @Table(name = "Eventos")
@@ -37,7 +39,7 @@ public class Eventos implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @NotBlank(message = "El tipo de evento no puede estar en blanco")
+    @NotBlank(message = "El tipo no puede estar en blanco")
     @Column(name = "tipo")
     private String tipo;
 
