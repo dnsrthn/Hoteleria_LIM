@@ -12,6 +12,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class Hotel implements Serializable{
     @Column(unique = true)
     private String nombre;
 
-    @NotBlank(message = "La calificacion es obligatoria")
+    @NotNull(message = "La calificacion es obligatoria")
     private Long calificacion;
 
     @NotBlank(message = "Ingrese una direccion")
@@ -49,7 +50,7 @@ public class Hotel implements Serializable{
     @NotBlank(message = "Ingrese el numero telefonico")
     private String telefono;
 
-    @NotBlank(message = "Ingrese los ingresos generados")
+    @NotNull(message = "Ingrese los ingresos generados")
     private double ingresos;
 
 
@@ -58,12 +59,6 @@ public class Hotel implements Serializable{
 
     @NotBlank(message = "Ingrese el estado del hotel")
     private String estado;
-
-
-    @OneToOne
-    @JoinColumn(name = "id_pais", nullable = false )
-    private Pais id_pais;
-
 
     @OneToOne
     @JoinColumn(name = "id_ciudad", nullable = false)

@@ -136,7 +136,6 @@ public class HotelController {
                 hotelEditar.setIngresos(hotelRecibido.getIngresos());
                 hotelEditar.setHotelPhoto(hotelRecibido.getHotelPhoto());
                 hotelEditar.setEstado(hotelRecibido.getEstado());
-                hotelEditar.setId_pais(hotelRecibido.getId_pais());
                 hotelEditar.setId_ciudad(hotelRecibido.getId_ciudad());
                 hotelService.registrarHotel(hotelEditar);
                 logger.info("Guardando registros modificados del hotel");
