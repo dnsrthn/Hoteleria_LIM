@@ -26,6 +26,9 @@ public class Cliente implements Serializable {
     @Column(unique = true)
     private String correo; 
 
+    @NotBlank(message = "ingresa el estado es obligatorio")
+    private String estado;
+
     @NotBlank(message = "Necesita llenar el campo del numero telefonico")
     private String telefono;
 }
