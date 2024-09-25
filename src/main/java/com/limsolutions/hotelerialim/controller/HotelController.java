@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,7 +27,6 @@ import com.limsolutions.hotelerialim.models.Hotel;
 import com.limsolutions.hotelerialim.service.CloudinaryService;
 import com.limsolutions.hotelerialim.service.HotelService;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 
@@ -108,23 +106,20 @@ public class HotelController {
         return ResponseEntity.ok(hotel);
     }
 
-    @PatchMapping("cambiar-estado/{idHotel}")
+    @PutMapping("hotel-Estado/{idHotel}")
     public ResponseEntity<Hotel> actualizarEstado(@PathVariable Long idHotel,@RequestBody Hotel hotelRecibido) {
         Hotel  hotelEditar = hotelService.buscarHotel(idHotel);
 
         if(hotelEditar == null){
             logger.error("No se pudo encontrar el hotel indicado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            try {
-                hotelEditar.setEstado(hotelRecibido.getEstado());
-                editarHotel(hotelEditar.getId_hotel(),hotelEditar);
-                return ResponseEntity.ok(hotelEditar);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
         }
-        }
+        hotelEditar.setEstado(hotelRecibido.getEstado());
+        hotelService.registrarHotel(hotelEditar);
+        logger.info("Guardando estado modificado del hotel");
+        return ResponseEntity.ok(hotelEditar);
     }
+
 
     @PutMapping("/editar-hotel/{idHotel}")
         public ResponseEntity <Hotel> editarHotel (@PathVariable Long idHotel, @RequestBody Hotel hotelRecibido){
@@ -141,13 +136,11 @@ public class HotelController {
                 hotelEditar.setIngresos(hotelRecibido.getIngresos());
                 hotelEditar.setHotelPhoto(hotelRecibido.getHotelPhoto());
                 hotelEditar.setEstado(hotelRecibido.getEstado());
-                hotelEditar.setId_pais(hotelRecibido.getId_pais());
                 hotelEditar.setId_ciudad(hotelRecibido.getId_ciudad());
                 hotelService.registrarHotel(hotelEditar);
                 logger.info("Guardando registros modificados del hotel");
             }
                 return ResponseEntity.ok(hotelEditar);
         }
-
 
 }
