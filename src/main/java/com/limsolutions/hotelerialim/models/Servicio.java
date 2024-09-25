@@ -21,13 +21,15 @@ public class Servicio implements Serializable{
     @Column(name = "id_servicio", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_servicio;
-
-    @OneToOne
-    @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel id_hotel;
     
     @NotBlank(message = "Necesitas llenar el nombre")
     private String nombre;
 
+    @NotBlank(message = "Necesitas llenar el estado")
+    private String estado;
+    
+    @OneToOne
+    @JoinColumn(name = "id_hotel", nullable = false)
+    private Hotel id_hotel;
 
 }
