@@ -26,14 +26,6 @@ public class Salon implements Serializable {
     @Column(name = "id_salon")
     private Long id_salon;
 
-    @ManyToOne
-    @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel id_hotel; // id del hotel como clave foránea   
-
-    @ManyToOne
-    @JoinColumn(name = "id_servicio", nullable = false)
-    private Servicio id_servicio; // id del servicio como clave foránea
-
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Column(name = "nombre")
     private String nombre;
@@ -44,9 +36,17 @@ public class Salon implements Serializable {
 
     @NotBlank()
     @Column(name = "estado")
-    private Boolean estado;
+    private String estado;
 
     @Column(name = "descripcion")
     private String descripcion;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_hotel", nullable = false)
+    private Hotel id_hotel; // id del hotel como clave foránea   
+
+    @ManyToOne
+    @JoinColumn(name = "id_servicio", nullable = false)
+    private Servicio id_servicio; // id del servicio como clave foránea
 
 }

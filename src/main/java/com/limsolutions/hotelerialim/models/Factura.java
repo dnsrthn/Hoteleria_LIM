@@ -18,6 +18,15 @@ public class Factura implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id_factura;
+
+    @NotBlank(message = "Necesita llenar el campo de Impuestos")
+    private Double impuestos;
+
+    @NotBlank(message = "Necesita llenar el campo de tarifa")
+    private Double tarifa;
+
+    @NotBlank(message = "Necesita llenar el campo de total")
+    private Double total;
     
     @OneToOne
     @JoinColumn(nullable = false)
@@ -30,15 +39,6 @@ public class Factura implements Serializable {
     @OneToOne
     @JoinColumn(nullable = false)
     private Reservacion id_reservacion;
-
-    @NotBlank(message = "Necesita llenar el campo de Impuestos")
-    private Double impuestos;
-
-    @NotBlank(message = "Necesita llenar el campo de tarifa")
-    private Double tarifa;
-
-    @NotBlank(message = "Necesita llenar el campo de total")
-    private Double total;
 
 
 

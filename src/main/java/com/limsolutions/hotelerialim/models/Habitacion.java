@@ -24,9 +24,6 @@ public class Habitacion implements Serializable {
     @Column(name = "id_habitacion")
     private Long id_habitacion;
 
-    @JoinColumn(name = "id_hotel", nullable = false)
-    private Hotel id_hotel;
-
     @Column(name = "tipo")
     @NotBlank(message = "El tipo de habitacion es obligatorio")
     private String tipo;
@@ -43,8 +40,12 @@ public class Habitacion implements Serializable {
     @NotBlank(message = "El precio es obligatorio")
     private double precio;
 
+    @JoinColumn(name = "id_hotel", nullable = false)
+    private Hotel id_hotel;
+    
     @ManyToOne
     @JoinColumn(name = "id_servicio",  nullable = false)
     private Servicio id_servicio;
+    
 
 }

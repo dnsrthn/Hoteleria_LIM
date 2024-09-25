@@ -23,6 +23,13 @@ public class Reservacion implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_reservacion;
 
+    @Column(unique = false)
+    @NotBlank(message ="envio de dias obligatorio")
+    private Long dias;
+    
+    @NotBlank(message ="envio de estado obligatorio")
+    private String estado;
+
     @OneToOne
     @JoinColumn(name = "id_hotel", nullable = false)
     private Hotel id_hotel;
@@ -34,11 +41,4 @@ public class Reservacion implements Serializable{
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente id_cliente; 
-
-    @Column(unique = false)
-    @NotBlank(message ="envio de dias obligatorio")
-    private Long dias;
-    
-    @NotBlank(message ="envio de estado obligatorio")
-    private String estado;
 }

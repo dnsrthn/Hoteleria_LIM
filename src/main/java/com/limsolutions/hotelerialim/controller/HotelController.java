@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.limsolutions.hotelerialim.DTOS.EstadoDto;
+import com.limsolutions.hotelerialim.DTOS.HotelDto;
 import com.limsolutions.hotelerialim.models.Hotel;
 import com.limsolutions.hotelerialim.service.CloudinaryService;
 import com.limsolutions.hotelerialim.service.HotelService;
@@ -45,9 +47,9 @@ public class HotelController {
    private CloudinaryService cloudiService;
 
 
-    @PostMapping("/registro-hotel")
+    @PostMapping("/registrar_hotel")
     public ResponseEntity<?> registrarHotel(@RequestPart("hotelPhoto") MultipartFile hotelPhoto,
-    @Valid @RequestBody Hotel hotelAgregar){
+     @Valid @ModelAttribute HotelDto hotelAgregar){
 
         Map<String,Object> errores = new HashMap<>();
         try{
@@ -55,12 +57,11 @@ public class HotelController {
 
             Map<String,Object> uploadResult = cloudiService.uploadImg(hotelPhoto, "hoteles"); //metadata de la imagen en cloudi almacenada en variable tipo Map
             String urlPhoto = uploadResult.get("url").toString(); //el get key es segun la llave de busqueda que es la url para imagen
-            String img = urlPhoto.substring(urlPhoto.indexOf("hotelPhotos/"));
-
-            hotelService.registrarHotel(hotelAgregar);
-
+            String img = urlPhoto.substring(urlPhoto.indexOf("hoteles/"));
+            Hotel hotelGuardar = new Hotel(hotelAgregar,img);
+            hotelService.registrarHotel(hotelGuardar);
             logger.info("Hotel " + hotelAgregar + " registrado correctamente");
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(hotelAgregar,HttpStatus.CREATED);
 
          }catch(CannotCreateTransactionException e){
             logger.error("Error al procesar la transaccion");
@@ -90,14 +91,14 @@ public class HotelController {
         }
     }
 
-    @GetMapping("/hoteles")
+    @GetMapping("/listar_hoteles")
     public List<Hotel> listarHoteles(){
         var hotel = hotelService.listarHoteles();
         hotel.forEach((objHoteles -> logger.info(objHoteles.toString())));
         return hotel;
     }
 
-    @GetMapping("/buscar-hotel/{idHotel}")
+    @GetMapping("/buscar_hotel/{idHotel}")
     public ResponseEntity <Hotel> buscarHotel(@PathVariable Long idHotel){
         Hotel hotel = hotelService.buscarHotel(idHotel);
         if(hotel == null){
@@ -107,21 +108,8 @@ public class HotelController {
         return ResponseEntity.ok(hotel);
     }
 
-    @PatchMapping("cambiar-estado/{idHotel}")
-    public ResponseEntity<Hotel> actualizarEstado(@PathVariable Long idHotel,@RequestBody Hotel hotelRecibido) {
-        Hotel  hotelEditar = hotelService.buscarHotel(idHotel);
 
-        if(hotelEditar == null){
-            logger.error("No se pudo encontrar el hotel indicado");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        hotelEditar.setEstado(hotelRecibido.getEstado());
-        hotelService.registrarHotel(hotelEditar);
-        return ResponseEntity.ok(hotelEditar);
-    }
-
-
-    @PutMapping("/editar-hotel/{idHotel}")
+    @PutMapping("/editar_hotel/{idHotel}")
         public ResponseEntity <Hotel> editarHotel (@PathVariable Long idHotel, @RequestBody Hotel hotelRecibido){
             Hotel  hotelEditar = hotelService.buscarHotel(idHotel);
             if(hotelEditar == null){
@@ -141,6 +129,28 @@ public class HotelController {
                 logger.info("Guardando registros modificados del hotel");
             }
                 return ResponseEntity.ok(hotelEditar);
+        }
+
+    @PutMapping("estado_hotel/{idHotel}")
+        public ResponseEntity<Hotel> actualizarEstado(@PathVariable Long idHotel,@RequestBody EstadoDto estado) {
+            Hotel  hotelEditar = hotelService.buscarHotel(idHotel);
+
+            if(hotelEditar == null){
+                logger.error("No se pudo encontrar el hotel indicado");
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            hotelEditar.setNombre(hotelEditar.getNombre());
+            hotelEditar.setCalificacion(hotelEditar.getCalificacion());
+            hotelEditar.setDireccion(hotelEditar.getDireccion());
+            hotelEditar.setCorreo(hotelEditar.getCorreo());
+            hotelEditar.setTelefono(hotelEditar.getTelefono());
+            hotelEditar.setIngresos(hotelEditar.getIngresos());
+            hotelEditar.setHotelPhoto(hotelEditar.getHotelPhoto());
+            hotelEditar.setId_ciudad(hotelEditar.getId_ciudad());
+            hotelEditar.setEstado(estado.getEstado());
+            hotelService.registrarHotel(hotelEditar);
+            logger.info("Guardando estado modificado del hotel");
+            return ResponseEntity.ok(hotelEditar);  
         }
 
 }
